@@ -301,36 +301,29 @@ async function submitForm(event){
   // ✅ INCOLLA QUI LA TUA URL /exec
   const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxIKoeu8EFUa3gLAtmGfw4uCMQGOSgaC4iYkH9O_OkOyIW9pK2N0NButLm55S3SKQYA/exec";
 
-  try{
-    const response = await fetch(WEBAPP_URL, {
-      method:"POST",
-      headers:{ "Content-Type":"application/json" },
-      body:JSON.stringify(data),
-      mode:"cors"
-    });
+ try {
+  const response = await fetch(WEBAPP_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+    mode: "cors"
+  });
 
-    // Se Google risponde con redirect/stranezze, qui lo intercettiamo comunque
-    if(!response.ok){
-      throw new Error("Risposta non OK: " + response.status);
-    }
-
-    // UI OK
-    document.getElementById("confirmForm").style.display="none";
-    const gift = document.querySelector(".gift-box");
-    if(gift) gift.style.display="none";
-    document.getElementById("successMessage").classList.add("show");
-    window.scrollTo({top:0,behavior:"smooth"});
-
-  }catch(err){
-    console.error(err);
-    alert("Errore nell'invio. Contattaci al 0781 689047");
-    submitBtn.disabled = false;
-    statusBox.classList.remove("show");
+  // Anche se Google fa redirect, qui almeno vediamo subito se la risposta è "ok"
+  if (!response.ok) {
+    throw new Error("HTTP " + response.status);
   }
 
-  return false; // IMPORTANTISSIMO: impedisce submit classico
-}
-</script>
+  document.getElementById("confirmForm").style.display = "none";
+  const gift = document.querySelector(".gift-box");
+  if (gift) gift.style.display = "none";
+  document.getElementById("successMessage").classList.add("show");
+  window.scrollTo({ top: 0, behavior: "smooth" });
 
-</body>
-</html>
+} catch (err) {
+  console.error("Errore invio:", err);
+  alert("Errore nell'invio. Contattaci al 0781 689047");
+  submitBtn.disabled = false;
+  statusBox.classList.remove("show");
+}
+
