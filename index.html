@@ -1,168 +1,94 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Conferma il tuo trattamento - Studio Sabiu</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conferma il tuo trattamento - Studio Sabiu</title>
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
 
-body{
-  font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
-  background:linear-gradient(135deg,#E6F2FF 0%,#CCE5FF 100%);
-  min-height:100vh;
-  padding:20px;
-}
+    body{
+      font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+      background:linear-gradient(135deg,#E6F2FF 0%,#CCE5FF 100%);
+      min-height:100vh;
+      padding:20px;
+    }
 
-.container{
-  max-width:600px;
-  margin:0 auto;
-  background:#fff;
-  border-radius:16px;
-  box-shadow:0 8px 32px rgba(0,102,204,.15);
-  overflow:hidden;
-}
+    .container{
+      max-width:760px;
+      margin:0 auto;
+      background:#fff;
+      border-radius:16px;
+      box-shadow:0 8px 32px rgba(0,102,204,.15);
+      overflow:hidden;
+    }
 
-.header{
-  background:linear-gradient(135deg,#0066CC 0%,#004C99 100%);
-  padding:40px 30px;
-  text-align:center;
-  color:#fff;
-}
+    .header{
+      background:linear-gradient(135deg,#0066CC 0%,#004C99 100%);
+      padding:36px 24px;
+      text-align:center;
+      color:#fff;
+    }
 
-.header h1{font-size:32px;margin-bottom:10px}
-.header p{opacity:.9}
+    .header h1{
+      font-size:28px;
+      margin-bottom:8px;
+    }
 
-.gift-box{
-  background:linear-gradient(135deg.confirmForm,#FFF9E6 0%,#FFE6B2 100%);
-  margin:30px;
-  padding:30px;
-  border-radius:12px;
-  border:3px solid #FFD700;
-  text-align:center;
-}
+    .header p{opacity:.9}
 
-.gift-box .icon{font-size:48px;margin-bottom:15px}
-.gift-box h2{color:#FF6B00;margin-bottom:15px}
+    .gift-box{
+      background:linear-gradient(135deg,#FFF9E6 0%,#FFE6B2 100%);
+      margin:24px;
+      padding:24px;
+      border-radius:12px;
+      border:3px solid #FFD700;
+      text-align:center;
+    }
 
-.content{padding:30px}
+    .gift-box .icon{
+      font-size:42px;
+      margin-bottom:10px;
+    }
 
-.urgency{
-  background:#FFEBEE;
-  border-left:4px solid #D32F2F;
-  padding:15px;
-  margin-bottom:20px;
-  border-radius:4px;
-}
+    .gift-box h2{
+      color:#FF6B00;
+      margin-bottom:10px;
+      font-size:22px;
+    }
 
-.urgency p{color:#D32F2F;font-weight:600}
+    .wrap{
+      padding:0 24px 24px;
+    }
 
-.form-group{margin-bottom:20px}
+    .iframe-box{
+      border-radius:12px;
+      overflow:hidden;
+      border:1px solid #e6e6e6;
+      background:#fff;
+    }
 
-.form-group label{
-  display:block;
-  font-weight:600;
-  margin-bottom:8px;
-  font-size:14px;
-}
+    iframe{
+      width:100%;
+      height:1700px;
+      border:0;
+      display:block;
+    }
 
-.form-group input,
-.form-group select,
-.form-group textarea{
-  width:100%;
-  padding:12px 15px;
-  border:2px solid #E0E0E0;
-  border-radius:8px;
-  font-size:15px;
-}
+    .footer{
+      background:#F8F8F8;
+      padding:18px;
+      text-align:center;
+      border-top:1px solid #E0E0E0;
+      font-size:13px;
+      color:#666;
+    }
 
-.form-group textarea{min-height:100px;resize:vertical}
-
-.benefits{
-  background:#F5F5F5;
-  padding:20px;
-  border-radius:8px;
-  margin:20px 0;
-}
-
-.benefits h3{color:#0066CC;margin-bottom:15px}
-.benefits ul{list-style:none}
-.benefits li{padding:8px 0}
-.benefits li:before{content:"✓ ";color:#0066CC;font-weight:bold}
-
-.checkbox-group{
-  display:flex;
-  align-items:flex-start;
-  margin-bottom:20px;
-}
-
-.checkbox-group input{margin-right:10px;margin-top:3px}
-
-.submit-btn{
-  width:100%;
-  padding:16px;
-  background:linear-gradient(135deg,#0066CC 0%,#004C99 100%);
-  color:#fff;
-  border:none;
-  border-radius:50px;
-  font-size:18px;
-  font-weight:700;
-  cursor:pointer;
-}
-
-.submit-btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 6px 20px rgba(0,102,204,.4);
-}
-
-.submit-btn[disabled]{
-  opacity:.7;
-  cursor:not-allowed;
-  transform:none;
-  box-shadow:none;
-}
-
-.status{
-  display:none;
-  margin:15px 0 0;
-  padding:12px 14px;
-  background:#E3F2FD;
-  border:1px solid #90CAF9;
-  border-radius:8px;
-  color:#0D47A1;
-  font-weight:600;
-  font-size:14px;
-}
-
-.status.show{display:block;}
-
-.success-message{
-  display:none;
-  background:#E8F5E9;
-  border:2px solid #4CAF50;
-  border-radius:8px;
-  padding:30px;
-  margin:30px;
-  text-align:center;
-}
-
-.success-message.show{display:block}
-
-.footer{
-  background:#F8F8F8;
-  padding:25px;
-  text-align:center;
-  border-top:1px solid #E0E0E0;
-  font-size:13px;
-  color:#666;
-}
-
-@media(max-width:640px){
-  .header h1{font-size:24px}
-  .content{padding:20px}
-}
-</style>
+    @media(max-width:640px){
+      iframe{height:1850px;}
+    }
+  </style>
 </head>
 
 <body>
@@ -186,82 +112,14 @@ body{
     </p>
   </div>
 
-  <!-- ANTI-RELOAD: onsubmit richiama direttamente la funzione -->
-  <form id="confirmForm" class="content" onsubmit="return submitForm(event);" action="javascript:void(0);">
-
-    <div class="urgency">
-      <p>⏰ Offerta valida solo fino al 30/01/2026</p>
+  <div class="wrap">
+    <div class="iframe-box">
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSf6lgeXM9TGufWU_W27CfMaHeIdByX118nihAMCe6a6IXPkBw/viewform?embedded=true"
+        loading="lazy">
+        Caricamento…
+      </iframe>
     </div>
-
-    <div class="form-group">
-      <label for="nome">Nome *</label>
-      <input id="nome" required>
-    </div>
-
-    <div class="form-group">
-      <label for="cognome">Cognome *</label>
-      <input id="cognome" required>
-    </div>
-
-    <div class="form-group">
-      <label for="email">Email *</label>
-      <input type="email" id="email" required>
-    </div>
-
-    <div class="form-group">
-      <label for="telefono">Telefono *</label>
-      <input type="tel" id="telefono" required>
-    </div>
-
-    <div class="form-group">
-      <label for="preferenza_orario">Quando preferisci essere ricontattato? *</label>
-      <select id="preferenza_orario" required>
-        <option value="">Seleziona…</option>
-        <option>Mattina</option>
-        <option>Pomeriggio</option>
-        <option>Sera</option>
-        <option>Qualsiasi momento</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="sbiancamento_per">Lo sbiancamento omaggio è per:</label>
-      <select id="sbiancamento_per">
-        <option>Me</option>
-        <option>Regalo</option>
-        <option>Deciderò più avanti</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="note">Note (opzionale)</label>
-      <textarea id="note"></textarea>
-    </div>
-
-    <div class="benefits">
-      <h3>✨ Il tuo piano include:</h3>
-      <ul>
-        <li>Tecnologie digitali all’avanguardia</li>
-        <li>Team specializzato</li>
-        <li>Preventivo chiaro e definito</li>
-        <li>Sbiancamento professionale OMAGGIO</li>
-        <li>Extra sconto 5%</li>
-      </ul>
-    </div>
-
-    <div class="checkbox-group">
-      <input type="checkbox" id="privacy" required>
-      <label for="privacy">Accetto l’informativa privacy *</label>
-    </div>
-
-    <button id="submitBtn" type="submit" class="submit-btn">Sì, confermo il trattamento</button>
-
-    <div id="statusBox" class="status">Invio in corso…</div>
-  </form>
-
-  <div id="successMessage" class="success-message">
-    <h2>✅ Richiesta inviata con successo</h2>
-    <p>La segreteria ti contatterà entro breve.</p>
   </div>
 
   <div class="footer">
@@ -272,53 +130,5 @@ body{
 
 </div>
 
-<script>
-async function submitForm(event){
-  // BLOCCO TOTALE DEL RELOAD (garantito)
-  if (event) event.preventDefault();
-
-  const privacy = document.getElementById("privacy");
-  if(!privacy.checked){
-    alert("Accetta l'informativa privacy");
-    return false;
-  }
-
-  const submitBtn = document.getElementById("submitBtn");
-  const statusBox = document.getElementById("statusBox");
-  submitBtn.disabled = true;
-  statusBox.classList.add("show");
-
-  const data = {
-    nome: document.getElementById("nome").value,
-    cognome: document.getElementById("cognome").value,
-    email: document.getElementById("email").value,
-    telefono: document.getElementById("telefono").value,
-    preferenza_orario: document.getElementById("preferenza_orario").value,
-    sbiancamento_per: document.getElementById("sbiancamento_per").value,
-    note: document.getElementById("note").value
-  };
-
-  // ✅ INCOLLA QUI LA TUA URL /exec
-  const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxIKoeu8EFUa3gLAtmGfw4uCMQGOSgaC4iYkH9O_OkOyIW9pK2N0NButLm55S3SKQYA/exec";
-
-try {
-  await fetch(WEBAPP_URL, {
-    method: "POST",
-    mode: "no-cors",
-    body: JSON.stringify(data)
-  });
-
-  // UI: mostro conferma subito (non dipende dalla risposta CORS)
-  document.getElementById("confirmForm").style.display = "none";
-  const gift = document.querySelector(".gift-box");
-  if (gift) gift.style.display = "none";
-  document.getElementById("successMessage").classList.add("show");
-  window.scrollTo({ top: 0, behavior: "smooth" });
-
-} catch (err) {
-  console.error("Errore invio:", err);
-  alert("Errore nell'invio. Contattaci al 0781 689047");
-  submitBtn.disabled = false;
-  statusBox.classList.remove("show");
-}
-
+</body>
+</html>
