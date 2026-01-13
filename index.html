@@ -301,19 +301,14 @@ async function submitForm(event){
   // ✅ INCOLLA QUI LA TUA URL /exec
   const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxIKoeu8EFUa3gLAtmGfw4uCMQGOSgaC4iYkH9O_OkOyIW9pK2N0NButLm55S3SKQYA/exec";
 
- try {
-  const response = await fetch(WEBAPP_URL, {
+try {
+  await fetch(WEBAPP_URL, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-    mode: "cors"
+    mode: "no-cors",
+    body: JSON.stringify(data)
   });
 
-  // Anche se Google fa redirect, qui almeno vediamo subito se la risposta è "ok"
-  if (!response.ok) {
-    throw new Error("HTTP " + response.status);
-  }
-
+  // UI: mostro conferma subito (non dipende dalla risposta CORS)
   document.getElementById("confirmForm").style.display = "none";
   const gift = document.querySelector(".gift-box");
   if (gift) gift.style.display = "none";
