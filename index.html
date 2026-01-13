@@ -35,7 +35,7 @@ body{
 .header p{opacity:.9}
 
 .gift-box{
-  background:linear-gradient(135deg,#FFF9E6 0%,#FFE6B2 100%);
+  background:linear-gradient(135deg.confirmForm,#FFF9E6 0%,#FFE6B2 100%);
   margin:30px;
   padding:30px;
   border-radius:12px;
@@ -116,6 +116,27 @@ body{
   box-shadow:0 6px 20px rgba(0,102,204,.4);
 }
 
+.submit-btn[disabled]{
+  opacity:.7;
+  cursor:not-allowed;
+  transform:none;
+  box-shadow:none;
+}
+
+.status{
+  display:none;
+  margin:15px 0 0;
+  padding:12px 14px;
+  background:#E3F2FD;
+  border:1px solid #90CAF9;
+  border-radius:8px;
+  color:#0D47A1;
+  font-weight:600;
+  font-size:14px;
+}
+
+.status.show{display:block;}
+
 .success-message{
   display:none;
   background:#E8F5E9;
@@ -165,34 +186,35 @@ body{
     </p>
   </div>
 
-  <form id="confirmForm" class="content">
+  <!-- ANTI-RELOAD: onsubmit richiama direttamente la funzione -->
+  <form id="confirmForm" class="content" onsubmit="return submitForm(event);" action="javascript:void(0);">
 
     <div class="urgency">
       <p>⏰ Offerta valida solo fino al 30/01/2026</p>
     </div>
 
     <div class="form-group">
-      <label>Nome *</label>
+      <label for="nome">Nome *</label>
       <input id="nome" required>
     </div>
 
     <div class="form-group">
-      <label>Cognome *</label>
+      <label for="cognome">Cognome *</label>
       <input id="cognome" required>
     </div>
 
     <div class="form-group">
-      <label>Email *</label>
+      <label for="email">Email *</label>
       <input type="email" id="email" required>
     </div>
 
     <div class="form-group">
-      <label>Telefono *</label>
+      <label for="telefono">Telefono *</label>
       <input type="tel" id="telefono" required>
     </div>
 
     <div class="form-group">
-      <label>Quando preferisci essere ricontattato? *</label>
+      <label for="preferenza_orario">Quando preferisci essere ricontattato? *</label>
       <select id="preferenza_orario" required>
         <option value="">Seleziona…</option>
         <option>Mattina</option>
@@ -203,7 +225,7 @@ body{
     </div>
 
     <div class="form-group">
-      <label>Lo sbiancamento omaggio è per:</label>
+      <label for="sbiancamento_per">Lo sbiancamento omaggio è per:</label>
       <select id="sbiancamento_per">
         <option>Me</option>
         <option>Regalo</option>
@@ -212,7 +234,7 @@ body{
     </div>
 
     <div class="form-group">
-      <label>Note (opzionale)</label>
+      <label for="note">Note (opzionale)</label>
       <textarea id="note"></textarea>
     </div>
 
@@ -229,10 +251,12 @@ body{
 
     <div class="checkbox-group">
       <input type="checkbox" id="privacy" required>
-      <label>Accetto l’informativa privacy *</label>
+      <label for="privacy">Accetto l’informativa privacy *</label>
     </div>
 
-    <button type="submit" class="submit-btn">Sì, confermo il trattamento</button>
+    <button id="submitBtn" type="submit" class="submit-btn">Sì, confermo il trattamento</button>
+
+    <div id="statusBox" class="status">Invio in corso…</div>
   </form>
 
   <div id="successMessage" class="success-message">
@@ -249,13 +273,20 @@ body{
 </div>
 
 <script>
-document.getElementById("confirmForm").addEventListener("submit", async function(e){
-  e.preventDefault();
+async function submitForm(event){
+  // BLOCCO TOTALE DEL RELOAD (garantito)
+  if (event) event.preventDefault();
 
-  if(!document.getElementById("privacy").checked){
+  const privacy = document.getElementById("privacy");
+  if(!privacy.checked){
     alert("Accetta l'informativa privacy");
-    return;
+    return false;
   }
+
+  const submitBtn = document.getElementById("submitBtn");
+  const statusBox = document.getElementById("statusBox");
+  submitBtn.disabled = true;
+  statusBox.classList.add("show");
 
   const data = {
     nome: document.getElementById("nome").value,
@@ -267,26 +298,38 @@ document.getElementById("confirmForm").addEventListener("submit", async function
     note: document.getElementById("note").value
   };
 
-  try{
-    const response = await fetch(
-      ""https://script.google.com/macros/s/AKfycby4gWPz9BiS58zk6ItgLRlaG8s4efsh0kmSzpzxBYY/exec"
-",
-      {
-        method:"POST",
-        headers:{ "Content-Type":"application/json" },
-        body:JSON.stringify(data)
-      }
-    );
+  // ✅ INCOLLA QUI LA TUA URL /exec
+  const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxIKoeu8EFUa3gLAtmGfw4uCMQGOSgaC4iYkH9O_OkOyIW9pK2N0NButLm55S3SKQYA/exec";
 
+  try{
+    const response = await fetch(WEBAPP_URL, {
+      method:"POST",
+      headers:{ "Content-Type":"application/json" },
+      body:JSON.stringify(data),
+      mode:"cors"
+    });
+
+    // Se Google risponde con redirect/stranezze, qui lo intercettiamo comunque
+    if(!response.ok){
+      throw new Error("Risposta non OK: " + response.status);
+    }
+
+    // UI OK
     document.getElementById("confirmForm").style.display="none";
-    document.querySelector(".gift-box").style.display="none";
+    const gift = document.querySelector(".gift-box");
+    if(gift) gift.style.display="none";
     document.getElementById("successMessage").classList.add("show");
     window.scrollTo({top:0,behavior:"smooth"});
 
   }catch(err){
+    console.error(err);
     alert("Errore nell'invio. Contattaci al 0781 689047");
+    submitBtn.disabled = false;
+    statusBox.classList.remove("show");
   }
-});
+
+  return false; // IMPORTANTISSIMO: impedisce submit classico
+}
 </script>
 
 </body>
