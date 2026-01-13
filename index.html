@@ -1,453 +1,127 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conferma il tuo trattamento - Studio Sabiu</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #E6F2FF 0%, #CCE5FF 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0, 102, 204, 0.15);
-            overflow: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #0066CC 0%, #004C99 100%);
-            padding: 40px 30px;
-            text-align: center;
-            color: white;
-        }
-        
-        .header h1 {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-        
-        .header p {
-            font-size: 16px;
-            opacity: 0.9;
-        }
-        
-        .gift-box {
-            background: linear-gradient(135deg, #FFF9E6 0%, #FFE6B2 100%);
-            margin: 30px;
-            padding: 30px;
-            border-radius: 12px;
-            border: 3px solid #FFD700;
-            text-align: center;
-        }
-        
-        .gift-box .icon {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-        
-        .gift-box h2 {
-            color: #FF6B00;
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
-        
-        .gift-box p {
-            color: #333;
-            font-size: 16px;
-            line-height: 1.6;
-        }
-        
-        .content {
-            padding: 30px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            color: #333;
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
-        
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #E0E0E0;
-            border-radius: 8px;
-            font-size: 15px;
-            font-family: inherit;
-            transition: border-color 0.3s;
-        }
-        
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #0066CC;
-        }
-        
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-        
-        .form-group small {
-            display: block;
-            color: #666;
-            margin-top: 5px;
-            font-size: 13px;
-        }
-        
-        .checkbox-group {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 20px;
-        }
-        
-        .checkbox-group input[type="checkbox"] {
-            width: auto;
-            margin-right: 10px;
-            margin-top: 3px;
-        }
-        
-        .checkbox-group label {
-            font-size: 14px;
-            color: #333;
-            line-height: 1.5;
-        }
-        
-        .submit-btn {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, #0066CC 0%, #004C99 100%);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            text-transform: uppercase;
-        }
-        
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 102, 204, 0.4);
-        }
-        
-        .submit-btn:active {
-            transform: translateY(0);
-        }
-        
-        .urgency {
-            background: #FFEBEE;
-            border-left: 4px solid #D32F2F;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-        
-        .urgency p {
-            color: #D32F2F;
-            font-weight: 600;
-            font-size: 14px;
-        }
-        
-        .benefits {
-            background: #F5F5F5;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
-        
-        .benefits h3 {
-            color: #0066CC;
-            font-size: 18px;
-            margin-bottom: 15px;
-        }
-        
-        .benefits ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .benefits li {
-            padding: 8px 0;
-            color: #333;
-            font-size: 15px;
-            line-height: 1.6;
-        }
-        
-        .benefits li:before {
-            content: "✓ ";
-            color: #0066CC;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        
-        .footer {
-            background: #F8F8F8;
-            padding: 25px;
-            text-align: center;
-            border-top: 1px solid #E0E0E0;
-        }
-        
-        .footer p {
-            color: #666;
-            font-size: 13px;
-            line-height: 1.8;
-        }
-        
-        .footer strong {
-            color: #0066CC;
-        }
-        
-        .success-message {
-            display: none;
-            background: #E8F5E9;
-            border: 2px solid #4CAF50;
-            border-radius: 8px;
-            padding: 30px;
-            margin: 30px;
-            text-align: center;
-        }
-        
-        .success-message.show {
-            display: block;
-        }
-        
-        .success-message .icon {
-            font-size: 64px;
-            margin-bottom: 20px;
-        }
-        
-        .success-message h2 {
-            color: #4CAF50;
-            font-size: 28px;
-            margin-bottom: 15px;
-        }
-        
-        .success-message p {
-            color: #333;
-            font-size: 16px;
-            line-height: 1.6;
-        }
-        
-        @media (max-width: 640px) {
-            .header h1 {
-                font-size: 24px;
-            }
-            
-            .gift-box h2 {
-                font-size: 20px;
-            }
-            
-            .content {
-                padding: 20px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conferma Trattamento - Studio Sabiu</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f8fc;
+    padding:20px;
+}
+.container{
+    max-width:600px;
+    margin:auto;
+    background:#fff;
+    border-radius:12px;
+    padding:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,.1);
+}
+h1{text-align:center;color:#004c99;}
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    background:#0066cc;
+    color:#fff;
+    font-size:18px;
+    border-radius:40px;
+    cursor:pointer;
+}
+button:hover{background:#004c99;}
+input,select,textarea{
+    width:100%;
+    padding:10px;
+    margin-bottom:15px;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+.success{
+    display:none;
+    text-align:center;
+    color:#2e7d32;
+}
+footer{
+    text-align:center;
+    font-size:13px;
+    margin-top:30px;
+    color:#555;
+}
+</style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🎁 Conferma il Tuo Trattamento</h1>
-            <p>Studio Sabiu - Digital Dentistry</p>
-        </div>
-        
-        <div class="gift-box">
-            <div class="icon">✨</div>
-            <h2>OFFERTA ESCLUSIVA</h2>
-            <p>
-Conferma entro il <strong>30 Gennaio 2026</strong> e ricevi:<br><br>
 
-<strong>🎁 Sbiancamento Professionale OMAGGIO</strong><br>
-(valore €350, per te o da regalare)<br><br>
+<div class="container">
+    <h1>🎁 Conferma il tuo trattamento</h1>
 
-<strong>➕ EXTRA SCONTO 5%</strong><br>
-sull’importo del piano di cura confermato
-</p>
-        </div>
-        
-        <form id="confirmForm" class="content">
-            <div class="urgency">
-                <p>⏰ Offerta limitata: sbiancamento OMAGGIO + extra sconto 5% solo fino al 30/01/2026</p>
-            </div>
-            
-            <div class="form-group">
-                <label for="nome">Nome *</label>
-                <input type="text" id="nome" name="nome" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="cognome">Cognome *</label>
-                <input type="text" id="cognome" name="cognome" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="email">Email *</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="telefono">Telefono *</label>
-                <input type="tel" id="telefono" name="telefono" required placeholder="+39 ">
-            </div>
-            
-            <div class="form-group">
-                <label for="preferenza_orario">Quando preferisci essere ricontattato? *</label>
-                <select id="preferenza_orario" name="preferenza_orario" required>
-                    <option value="">Seleziona...</option>
-                    <option value="mattina">Mattina (9:00-13:00)</option>
-                    <option value="pomeriggio">Pomeriggio (14:00-18:00)</option>
-                    <option value="sera">Sera (18:00-20:00)</option>
-                    <option value="qualsiasi">Qualsiasi momento</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="sbiancamento_per">Lo sbiancamento omaggio è per:</label>
-                <select id="sbiancamento_per" name="sbiancamento_per">
-                    <option value="me">Me stesso/a</option>
-                    <option value="regalo">Regalo per qualcuno</option>
-                    <option value="decido_dopo">Deciderò più avanti</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="note">Note o domande (opzionale)</label>
-                <textarea id="note" name="note" placeholder="Es: Vorrei maggiori informazioni su..."></textarea>
-                <small>Puoi scriverci eventuali domande o richieste particolari</small>
-            </div>
-            
-            <div class="benefits">
-                <h3>✨ Il tuo piano include:</h3>
-                <ul>
-                    <li>Tecnologie digitali all'avanguardia</li>
-                    <li>Team specializzato</li>
-                    <li>Preventivo già definito - Zero sorprese</li>
-                    <li>Sbiancamento professionale LED (€350) OMAGGIO</li>
-                    <li>Extra sconto 5% riservato alle conferme entro la scadenza</li>
-                    <li>Consulenza personalizzata</li>
-                </ul>
-            </div>
-            
-            <div class="checkbox-group">
-                <input type="checkbox" id="privacy" name="privacy" required>
-                <label for="privacy">Confermo di aver letto e accettato l'informativa sulla privacy e autorizzo il trattamento dei miei dati personali *</label>
-            </div>
-            
-            <button type="submit" class="submit-btn">Sì, Confermo il Trattamento!</button>
-        </form>
-        
-        <div id="successMessage" class="success-message">
-            <div class="icon">✅</div>
-            <h2>Richiesta Inviata con Successo!</h2>
-            <p><strong>Grazie per aver confermato!</strong></p>
-            <p>Ti contatteremo entro 24 ore per confermare il tuo appuntamento.</p>
-            <p>Il tuo sbiancamento professionale omaggio (€350) ti aspetta! 🎁<br>In più, hai anche l’<strong>extra sconto 5%</strong> sulla conferma entro la scadenza.</p>
-            <br>
-            <p><em>Studio Sabiu - Digital Dentistry</em></p>
-        </div>
-        
-        <div class="footer">
-            <p><strong>📍 Studio Sabiu SRL</strong></p>
-            <p>San Giovanni Suergiu, Sardegna</p>
-           <p>📞 0781 689047 | 💬 WhatsApp 328 5770918</p>
-<p>📧 segreteria@studiosabiu.com</p>
+    <p style="text-align:center">
+        <strong>Sbiancamento professionale OMAGGIO (€350)</strong><br>
+        + <strong>Extra sconto 5%</strong>
+    </p>
 
-            <p>🌐 www.studiosabiu.it</p>
-        </div>
+    <form id="confirmForm">
+        <input type="text" id="nome" placeholder="Nome" required>
+        <input type="text" id="cognome" placeholder="Cognome" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="tel" id="telefono" placeholder="Telefono" required>
+
+        <select id="preferenza_orario" required>
+            <option value="">Quando preferisci essere ricontattato?</option>
+            <option value="Mattina">Mattina</option>
+            <option value="Pomeriggio">Pomeriggio</option>
+            <option value="Sera">Sera</option>
+        </select>
+
+        <select id="sbiancamento_per">
+            <option value="Per me">Per me</option>
+            <option value="Regalo">Regalo</option>
+            <option value="Deciderò più avanti">Deciderò più avanti</option>
+        </select>
+
+        <textarea id="note" placeholder="Note (opzionale)"></textarea>
+
+        <button type="submit">Sì, confermo</button>
+    </form>
+
+    <div class="success" id="successMessage">
+        <h2>✅ Richiesta inviata!</h2>
+        <p>La segreteria ti contatterà a breve.</p>
     </div>
-    
-    <script>
-        document.getElementById('confirmForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const formData = {
-                nome: document.getElementById('nome').value,
-                cognome: document.getElementById('cognome').value,
-                email: document.getElementById('email').value,
-                telefono: document.getElementById('telefono').value,
-                preferenza_orario: document.getElementById('preferenza_orario').value,
-                sbiancamento_per: document.getElementById('sbiancamento_per').value,
-                note: document.getElementById('note').value
-            };
-            
-            // INTEGRAZIONE BREVO - Sostituisci con il tuo endpoint
-            try {
-                // Opzione 1: Invia a Brevo via API
-                /*
-                const response = await fetch('https://api.brevo.com/v3/contacts', {
-                    method: 'POST',
-                    headers: {
-                        'accept': 'application/json',
-                        'api-key': 'TUA_API_KEY_BREVO',
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        email: formData.email,
-                        attributes: {
-                            FIRSTNAME: formData.nome,
-                            LASTNAME: formData.cognome,
-                            SMS: formData.telefono,
-                            PREFERENZA_ORARIO: formData.preferenza_orario,
-                            SBIANCAMENTO_PER: formData.sbiancamento_per,
-                            NOTE: formData.note
-                        },
-                        listIds: [YOUR_LIST_ID], // ID lista Brevo
-                        updateEnabled: true
-                    })
-                });
-                */
-                
-                // Opzione 2: Invia email semplice (fallback)
-                const emailBody = `
-                    NUOVA CONFERMA TRATTAMENTO
-                    
-                    Nome: ${formData.nome} ${formData.cognome}
-                    Email: ${formData.email}
-                    Telefono: ${formData.telefono}
-                    Preferenza orario: ${formData.preferenza_orario}
-                    Sbiancamento per: ${formData.sbiancamento_per}
-                    Note: ${formData.note}
-                `;
-                
-                // Simulazione invio (rimuovi in produzione)
-                console.log('Dati form:', formData);
-                
-                // Nascondi form, mostra messaggio successo
-                document.querySelector('.content').style.display = 'none';
-                document.querySelector('.gift-box').style.display = 'none';
-                document.getElementById('successMessage').classList.add('show');
-                
-                // Scroll to top
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                
-            } catch (error) {
-                console.error('Errore invio:', error);
-                alert('Si è verificato un errore. Per favore riprova o contattaci direttamente al [numero]');
-            }
-        });
-    </script>
+
+    <footer>
+        <p>📞 0781 689047 | 💬 WhatsApp 328 5770918</p>
+        <p>📧 info@studiosabiu.it</p>
+        <p>Studio Sabiu – San Giovanni Suergiu</p>
+    </footer>
+</div>
+
+<script>
+document.getElementById("confirmForm").addEventListener("submit", async function(e){
+    e.preventDefault();
+
+    const data = {
+        nome: nome.value,
+        cognome: cognome.value,
+        email: email.value,
+        telefono: telefono.value,
+        preferenza_orario: preferenza_orario.value,
+        sbiancamento_per: sbiancamento_per.value,
+        note: note.value
+    };
+
+    await fetch("https://script.google.com/macros/s/AKfycbxIKoeu8EFUa3gLAtmGfw4uCMQGOSgaC4iYkH9O_OkOyIW9pK2N0NButLm55S3SKQYA/exec", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" }
+    });
+
+    document.getElementById("confirmForm").style.display="none";
+    document.getElementById("successMessage").style.display="block";
+});
+</script>
+
 </body>
 </html>
