@@ -1,125 +1,156 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Conferma Trattamento - Studio Sabiu</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conferma Trattamento | Studio Sabiu</title>
 
-<style>
-body{
-    font-family: Arial, sans-serif;
-    background:#f4f8fc;
-    padding:20px;
-}
-.container{
-    max-width:600px;
-    margin:auto;
-    background:#fff;
-    border-radius:12px;
-    padding:30px;
-    box-shadow:0 10px 30px rgba(0,0,0,.1);
-}
-h1{text-align:center;color:#004c99;}
-button{
-    width:100%;
-    padding:14px;
-    border:none;
-    background:#0066cc;
-    color:#fff;
-    font-size:18px;
-    border-radius:40px;
-    cursor:pointer;
-}
-button:hover{background:#004c99;}
-input,select,textarea{
-    width:100%;
-    padding:10px;
-    margin-bottom:15px;
-    border-radius:8px;
-    border:1px solid #ccc;
-}
-.success{
-    display:none;
-    text-align:center;
-    color:#2e7d32;
-}
-footer{
-    text-align:center;
-    font-size:13px;
-    margin-top:30px;
-    color:#555;
-}
-</style>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #e6f2ff, #cce5ff);
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.15);
+      overflow: hidden;
+    }
+    header {
+      background: #004c99;
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+    header h1 { margin: 0 0 10px; }
+    .offer {
+      background: #fff8e1;
+      border: 3px solid #ffd700;
+      margin: 20px;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .content { padding: 30px; }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+    textarea { resize: vertical; }
+    button {
+      width: 100%;
+      padding: 16px;
+      background: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 40px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover { background: #004c99; }
+    .success {
+      display: none;
+      padding: 40px;
+      text-align: center;
+      color: #2e7d32;
+    }
+    footer {
+      background: #f5f5f5;
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+      color: #555;
+    }
+  </style>
 </head>
 
 <body>
 
 <div class="container">
+
+  <header>
     <h1>🎁 Conferma il tuo trattamento</h1>
+    <p>Studio Sabiu – Digital Dentistry</p>
+  </header>
 
-    <p style="text-align:center">
-        <strong>Sbiancamento professionale OMAGGIO (€350)</strong><br>
-        + <strong>Extra sconto 5%</strong>
+  <div class="offer">
+    <p>
+      <strong>Sbiancamento professionale OMAGGIO (€350)</strong><br><br>
+      <strong>➕ Extra sconto 5%</strong><br>
+      riservato alle conferme entro la scadenza
     </p>
+  </div>
 
-    <form id="confirmForm">
-        <input type="text" id="nome" placeholder="Nome" required>
-        <input type="text" id="cognome" placeholder="Cognome" required>
-        <input type="email" id="email" placeholder="Email" required>
-        <input type="tel" id="telefono" placeholder="Telefono" required>
+  <form id="confirmForm" class="content">
+    <input type="text" id="nome" placeholder="Nome" required />
+    <input type="text" id="cognome" placeholder="Cognome" required />
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="tel" id="telefono" placeholder="Telefono" required />
 
-        <select id="preferenza_orario" required>
-            <option value="">Quando preferisci essere ricontattato?</option>
-            <option value="Mattina">Mattina</option>
-            <option value="Pomeriggio">Pomeriggio</option>
-            <option value="Sera">Sera</option>
-        </select>
+    <select id="preferenza_orario" required>
+      <option value="">Quando preferisci essere ricontattato?</option>
+      <option value="Mattina">Mattina</option>
+      <option value="Pomeriggio">Pomeriggio</option>
+      <option value="Sera">Sera</option>
+      <option value="Qualsiasi">Qualsiasi momento</option>
+    </select>
 
-        <select id="sbiancamento_per">
-            <option value="Per me">Per me</option>
-            <option value="Regalo">Regalo</option>
-            <option value="Deciderò più avanti">Deciderò più avanti</option>
-        </select>
+    <select id="sbiancamento_per">
+      <option value="Per me">Per me</option>
+      <option value="Regalo">Regalo</option>
+      <option value="Deciderò più avanti">Deciderò più avanti</option>
+    </select>
 
-        <textarea id="note" placeholder="Note (opzionale)"></textarea>
+    <textarea id="note" placeholder="Note o domande (opzionale)"></textarea>
 
-        <button type="submit">Sì, confermo</button>
-    </form>
+    <button type="submit">Sì, confermo il trattamento</button>
+  </form>
 
-    <div class="success" id="successMessage">
-        <h2>✅ Richiesta inviata!</h2>
-        <p>La segreteria ti contatterà a breve.</p>
-    </div>
+  <div class="success" id="successMessage">
+    <h2>✅ Richiesta inviata con successo</h2>
+    <p>Ti contatteremo entro breve.</p>
+  </div>
 
-    <footer>
-        <p>📞 0781 689047 | 💬 WhatsApp 328 5770918</p>
-        <p>📧 info@studiosabiu.it</p>
-        <p>Studio Sabiu – San Giovanni Suergiu</p>
-    </footer>
+  <footer>
+    <p>📞 0781 689047 | 💬 WhatsApp 328 5770918</p>
+    <p>📧 info@studiosabiu.it</p>
+    <p>Studio Sabiu SRL – San Giovanni Suergiu</p>
+  </footer>
+
 </div>
 
 <script>
-document.getElementById("confirmForm").addEventListener("submit", async function(e){
-    e.preventDefault();
+document.getElementById("confirmForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
 
-    const data = {
-        nome: nome.value,
-        cognome: cognome.value,
-        email: email.value,
-        telefono: telefono.value,
-        preferenza_orario: preferenza_orario.value,
-        sbiancamento_per: sbiancamento_per.value,
-        note: note.value
-    };
+  const data = {
+    nome: nome.value,
+    cognome: cognome.value,
+    email: email.value,
+    telefono: telefono.value,
+    preferenza_orario: preferenza_orario.value,
+    sbiancamento_per: sbiancamento_per.value,
+    note: note.value
+  };
 
-    await fetch("https://script.google.com/macros/s/AKfycbxIKoeu8EFUa3gLAtmGfw4uCMQGOSgaC4iYkH9O_OkOyIW9pK2N0NButLm55S3SKQYA/exec", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: { "Content-Type": "application/json" }
-    });
+  await fetch("https://script.google.com/macros/s/AKfycbxIKoeu8EFUa3gLAtmGfw4uCMQGOSgaC4iYkH9O_OkOyIW9pK2N0NButLm55S3SKQYA/exec", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
 
-    document.getElementById("confirmForm").style.display="none";
-    document.getElementById("successMessage").style.display="block";
+  document.getElementById("confirmForm").style.display = "none";
+  document.getElementById("successMessage").style.display = "block";
 });
 </script>
 
